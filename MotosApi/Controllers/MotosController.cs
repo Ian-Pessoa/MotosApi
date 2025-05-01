@@ -17,5 +17,11 @@ namespace MotosApi.Controllers
         {
             return Ok(Motos);
         }
+        [HttpPost]
+        public IActionResult AddMoto(Moto moto)
+        {
+            Motos.Add(moto);
+            return CreatedAtAction(nameof(GetMotos), new { id = moto.Id }, moto);
+        }
     }
 }
