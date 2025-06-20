@@ -19,10 +19,10 @@ jobs:
           dotnet-version: "8.x"
 
       - name: Restaurando dependências
-        run: dotnet restore MotosApi/MotosApi.csproj
+        run: dotnet restore vagrant_data/MotosApi.csproj
 
       - name: Compilando o projeto
-        run: dotnet build MotosApi/MotosApi.csproj --configuration Release
+        run: dotnet build vagrant_data/MotosApi.csproj --configuration Release
 
       - name: Executando aplicação
-        run: dotnet run --project MotosApi/MotosApi.csproj --configuration Release
+        run: dotnet run --project vagrant_data/MotosApi.csproj --configuration Release

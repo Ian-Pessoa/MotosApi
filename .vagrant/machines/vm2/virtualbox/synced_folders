@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/app":{"guestpath":"/home/vagrant/app","hostpath":"C:/Users/ian_g/OneDrive/Área de Trabalho/MotosApi/vagrant_data","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"C:/Users/ian_g/OneDrive/Área de Trabalho/MotosApi","disabled":false,"__vagrantfile":true}}}

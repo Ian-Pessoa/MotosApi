@@ -6,6 +6,7 @@ Esta API foi criada para gerenciar informações de motos. Ela fornece um endpoi
 
 - **.NET 8** (ASP.NET Core)
 - **Swagger** para documentação e teste da API
+- **Vagrant + VirtualBox** para provisionamento da infraestrutura
 
 ## Funcionalidades
 
@@ -26,11 +27,44 @@ O processo foi:
 ## Como executar
 
 ### Requisitos
+
 - .NET 8 SDK ou superior instalado
 
 ### Passos
 
 ```bash
 git clone https://github.com/Ian-Pessoa/MotosApi.git
-cd MotosApi
+cd vagrant_data/MotosApi
 dotnet run
+```
+
+## Como executar com Vagrant
+
+### Requisitos
+
+- [Vagrant](https://www.vagrantup.com/) instalado
+- [VirtualBox](https://www.virtualbox.org/) instalado
+
+### Passos
+
+#### Suba as VMs:
+
+```bash
+vagrant up
+```
+
+#### Acesse a VM2 e rode a aplicação:
+
+```bash
+vagrant ssh vm2
+cd app
+dotnet restore
+dotnet run --urls "http://0.0.0.0:5046"
+```
+
+#### Em outro terminal, acesse a VM1 e teste a rota GET:
+
+```bash
+vagrant ssh vm1
+curl http://192.168.56.11:5046/api/motos
+```
