@@ -8,6 +8,7 @@ Vagrant.configure("2") do |config|
     vm1.vm.network "private_network", type: "static", ip: "192.168.56.10"  # IP fixo
     vm1.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
+    vm1.vm.provision "shell", path: "bootstrap-vm1.sh"  
     end
   end
 

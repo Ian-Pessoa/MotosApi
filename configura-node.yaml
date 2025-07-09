@@ -1,0 +1,35 @@
+---
+- name: Configura VM2 com MotosApi
+  hosts: servidores
+  become: true
+
+  tasks:
+    - name: Instalar dependências .NET e git
+      apt:
+        name:
+          - git
+          - wget
+          - apt-transport-https
+          - software-properties-common
+        update_cache: yes
+
+    - name: Instalar .NET SDK
+      shell: |
+        wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
+        sudo dpkg -i packages-microsoft-prod.deb
+        sudo apt-get update
+        sudo apt-get install -y dotnet-sdk-8.0
+        rm -f packages-microsoft-prod.deb
+
+    - name: Restaurar dependências
+      shell: dotnet restore MotosApi.csproj
+      args:
+        chdir: /home/vagrant/app
+
+    - name: Publicar aplicação
+      shell: dotnet publish MotosApi.csproj -c Release -o /home/vagrant/app/publish
+      args:
+        chdir: /home/vagrant/app
+
+    - name: Rodar a aplicação em segundo plano
+      shell: nohup dotnet /home/vagrant/app/publish/MotosApi.dll > /home/vagrant/motosapi.log 2>&1 &

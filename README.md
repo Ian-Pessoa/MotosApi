@@ -68,3 +68,33 @@ dotnet run --urls "http://0.0.0.0:5046"
 vagrant ssh vm1
 curl http://192.168.56.11:5046/api/motos
 ```
+
+## 🔧 Configuração Automática com Ansible
+
+### ✅ Requisitos adicionais
+
+- `Ansible` instalado na VM1 (já configurado no provisionamento)
+
+### ▶️ Execução do Playbook
+
+1. Acesse a VM1:
+
+```bash
+vagrant ssh vm1
+```
+
+2. Execute o playbook:
+
+```bash
+ansible-playbook -i hosts.ini configura-node.yaml
+```
+
+Esse comando instala o .NET SDK, restaura as dependências e executa a aplicação na porta `5000`.
+
+### 🧪 Teste da API
+
+Depois de executar o playbook, teste a API a partir da VM1 com:
+
+```bash
+curl http://192.168.56.11:5000/api/motos
+```
